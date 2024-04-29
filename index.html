@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, target-densityDpi=device-dpi" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <title>Demo Puzzel Chat</title>
+
+  <style type="text/css">
+    html,
+    body {
+        width: 100%;
+        height: 100%;
+        padding: 0;
+        margin: 0;
+    }
+    [data-puzzel-chat] {
+        font-family: 'Open Sans', sans-serif;
+        z-index: 9999;
+    }
+  </style>
+</head>
+<body>
+  <div class="mx-auto container p-4">
+    <h1 class="text-3xl font-bold">
+      Hello chat!
+    </h1>
+  </div>
+  <div class="h-full bg-slate-300 p-2 text-center">
+    <div class="md:hidden">Mobile only</div>
+    <div class="hidden md:block">Desktop only!</div>
+  </div>
+  <div class="bg-slate-900 text-white">
+    foooter
+  </div>
+  <script type="text/javascript">
+    (function(a, b, c) {
+        var loader = a.createElement('script');
+        loader.src = 'https://euwa.puzzel.com/loader/index.js';
+        a.body.append(loader);
+        loader.onload = function () {
+            new EUWALoader({customerKey: b, configId: c}).load();
+        };
+    })(document, '400285', 'c1ea4f32-4ea8-43c6-9b3f-e8cee6d5da21');
+  </script>
+</body>
+</html>
