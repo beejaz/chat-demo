@@ -29,6 +29,9 @@
   <div class="h-full bg-slate-300 p-2 text-center">
     <div class="md:hidden">Mobile only</div>
     <div class="hidden md:block">Desktop only!</div>
+    <div>
+      <button class="bg-slate-500 text-white p-4 rounded" style="display: none;" id="your-start-button">Open chat</button>
+    </div>
   </div>
   <div class="bg-slate-900 text-white">
     foooter
@@ -38,8 +41,24 @@
         var loader = a.createElement('script');
         loader.src = 'https://euwa.puzzel.com/loader/index.js';
         a.body.append(loader);
-        loader.onload = function () {
-            new EUWALoader({customerKey: b, configId: c}).load();
+        loader.onload = async function () {
+            const euwa = await new EUWALoader({customerKey: b, configId: c})
+            await euwa.load().then(() => {
+                document.querySelector('#your-start-button').style  = '';
+                document.querySelector('#your-start-button').addEventListener('click', async () => {
+                  // Get the chat application context
+                  const chat = euwa.getApplication("PuzzelChatClient");
+                  console.log(chat)
+                  console.log(chat.api.getState());
+                  // Use the Chat's API to retrieve it's state
+                  const state = chat.api.getState();
+
+                  // Start a chat, if the user is not already in session
+                  if (!state.isConnected) {
+                      chat.api.startChat();
+                  }
+                });
+            })
         };
     })(document, '400285', 'f6160eda-8b09-4702-bf1a-3d32fa7d77ab');
   </script>
