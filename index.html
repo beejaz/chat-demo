@@ -42,23 +42,24 @@
         loader.src = 'https://euwa.puzzel.com/loader/index.js';
         a.body.append(loader);
         loader.onload = async function () {
-            const euwa = await new EUWALoader({customerKey: b, configId: c})
-            await euwa.load().then(() => {
-                document.querySelector('#your-start-button').style  = '';
-                document.querySelector('#your-start-button').addEventListener('click', async () => {
-                  // Get the chat application context
-                  const chat = euwa.getApplication("PuzzelChatClient");
-                  console.log(chat)
-                  console.log(chat.api.getState());
-                  // Use the Chat's API to retrieve it's state
-                  const state = chat.api.getState();
+          const euwa = await new EUWALoader({customerKey: b, configId: c})
+          await euwa.load()
+          if(Object.keys(euwa.getApplication("PuzzelChatClient").api).length !== 0) {
+            document.querySelector('#your-start-button').style  = '';
+            document.querySelector('#your-start-button').addEventListener('click', async () => {
+              // Get the chat application context
+              const chat = euwa.getApplication("PuzzelChatClient");
 
-                  // Start a chat, if the user is not already in session
-                  if (!state.isConnected) {
-                      chat.api.startChat();
-                  }
-                });
-            })
+              console.log(chat.api.getState());
+              // Use the Chat's API to retrieve it's state
+              const state = chat.api.getState();
+
+              // Start a chat, if the user is not already in session
+              if (!state.isConnected) {
+                  chat.api.startChat();
+              }
+            });
+          }
         };
     })(document, '400285', 'f6160eda-8b09-4702-bf1a-3d32fa7d77ab');
   </script>
