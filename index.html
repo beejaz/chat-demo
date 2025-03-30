@@ -28,9 +28,11 @@
     <h1 class="text-3xl font-bold">
       Hello chat!
     </h1>
-    <my-button id="btn1" label="Hit Me"></my-button>
+    <script type="module" src="./dist/my-components.js"></script>
 
-    <script type="module" src="my-button.js"></script>
+    <my-button label="One"></my-button>
+    <checkout-form message="Watch out!"></checkout-form>
+
     <script>
       const btn = document.getElementById('btn1')
       btn.addEventListener('clicked', (e) => {
