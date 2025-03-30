@@ -28,6 +28,15 @@
     <h1 class="text-3xl font-bold">
       Hello chat!
     </h1>
+    <my-button id="btn1" label="Hit Me"></my-button>
+
+    <script type="module" src="my-button.js"></script>
+    <script>
+      const btn = document.getElementById('btn1')
+      btn.addEventListener('clicked', (e) => {
+        console.log('Button clicked count:', e.detail)
+      })
+    </script>
   </div>
   <div class="h-full bg-slate-300 p-2 text-center">
     <div class="md:hidden">Mobile only</div>
